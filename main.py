@@ -11,6 +11,7 @@ class Game():
         self.clock = pygame.time.Clock()
 
         self.level = Level()
+        self.tocha = pygame.image.load('./assets/maps/tocha0.png').convert_alpha()
         
     def run(self):
         while True:
@@ -22,6 +23,7 @@ class Game():
 
             self.screen.fill('black')
             self.level.run()
+            self.screen.blit(self.tocha, (0,0))
             pygame.display.update()
             self.clock.tick(FPS)
 
