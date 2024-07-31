@@ -11,7 +11,7 @@ class Game():
         self.clock = pygame.time.Clock()
 
         self.level = Level()
-        self.tocha = pygame.image.load('./assets/maps/tocha0.png').convert_alpha()
+        self.fonte = pygame.font.Font(None, 20)
         
     def run(self):
         while True:
@@ -23,7 +23,13 @@ class Game():
 
             self.screen.fill('black')
             self.level.run()
-            self.screen.blit(self.tocha, (0,0))
+            
+            n_coletadas = 1
+            self.escuro = pygame.image.load(f'./assets/maps/tocha{n_coletadas}.png').convert_alpha()
+            self.screen.blit(self.escuro, (0,0))
+            self.contador = self.fonte.render(f'Estrelas coletadas: {n_coletadas}', False, 'Yellow')
+            self.screen.blit(self.contador, (0,0))
+            
             pygame.display.update()
             self.clock.tick(FPS)
 
