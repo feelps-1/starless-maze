@@ -6,11 +6,14 @@ from support import *
 from random import choice
 
 class Level():
-    def __init__(self):
+    def __init__(self, screen):
         self.display_surface = pygame.display.get_surface()
 
         self.visible_sprites = YSortCameraGroup()
         self.collision_sprites = pygame.sprite.Group()
+        self.collectibles_sprites = pygame.sprite.Group()
+
+        self.screen = screen
 
         self.create_map()
 
@@ -37,13 +40,15 @@ class Level():
 
                         if style == 'grass':
                             random_grass = choice(graphics['grass'])
-                            Tile((x, y), [self.collision_sprites, self.visible_sprites], 'grass', random_grass)
+                            Tile((x, y), [self.visible_sprites], 'grass', random_grass)
 
                         if style == 'objects':
                             surface = graphics['objects'][int(col)-2]
                             Tile((x, y), [self.collision_sprites, self.visible_sprites], 'object', surface)
 
-        self.player = Player((400, 300), [self.visible_sprites], self.collision_sprites)
+        Tile((32, 32), [self.visible_sprites, self.collectibles_sprites], 'collectible', pygame.image.load('./assets/tiles/grass/rock.png'))
+
+        self.player = Player((PLAYER_START_X, PLAYER_START_Y), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.screen)
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)

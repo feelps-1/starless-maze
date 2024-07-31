@@ -10,8 +10,7 @@ class Game():
         pygame.display.set_caption('Starless Maze')
         self.clock = pygame.time.Clock()
 
-        self.level = Level()
-        self.fonte = pygame.font.Font(None, 20)
+        self.level = Level(self.screen)
         
     def run(self):
         while True:
@@ -20,15 +19,8 @@ class Game():
                     pygame.quit()
                     sys.exit()
         
-
             self.screen.fill('black')
-            self.level.run()
-            
-            n_coletadas = 1
-            self.escuro = pygame.image.load(f'./assets/maps/tocha{n_coletadas}.png').convert_alpha()
-            self.screen.blit(self.escuro, (0,0))
-            self.contador = self.fonte.render(f'Estrelas coletadas: {n_coletadas}', False, 'Yellow')
-            self.screen.blit(self.contador, (0,0))
+            self.level.run()  
             
             pygame.display.update()
             self.clock.tick(FPS)
