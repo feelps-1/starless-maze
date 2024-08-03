@@ -79,14 +79,14 @@ class Player(pygame.sprite.Sprite):
         max_stars = 2
         bar_width = 100
         #Titulo do coletável
-        self.fonte = pygame.font.Font(None, 20)
-        self.contador = self.fonte.render(f'ESTRELAS: {stars}', False, 'White')
+        self.fonte = pygame.font.Font(None, 18)
+        self.contador = self.fonte.render(f'Estrelas: {stars}', False, 'White')
         self.screen.blit(self.contador, (20, 10))
         #Barra interior, que representa o vazio
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (20, 25)
-        rect_color = (255, 255, 255) #White
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 20))
+        rect_color = (254, 254, 201) 
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 15))
         self.screen.blit(rect_surface, rect_position)
         #Barra exterior, que representa a quantidade
         filling = (stars / max_stars) * bar_width
@@ -94,22 +94,25 @@ class Player(pygame.sprite.Sprite):
             filling = bar_width
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (20, 25)
-        rect_color = (0, 0, 255) #Blue
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 20))
+        rect_color = (255, 204, 0)
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 15))
         self.screen.blit(rect_surface, rect_position)
+        #estrelas:
+        self.cloud = pygame.image.load(f'./assets/tiles/stella.png')
+        self.screen.blit(self.cloud, (-80, -73))
 
     def count_nebula(self,stars):
         max_nebulae = 2
         bar_width = 100
         #Titulo do coletável
-        self.fonte = pygame.font.Font(None, 20)
-        self.contador = self.fonte.render(f'NEBULOSAS: {stars}', False, 'White')
-        self.screen.blit(self.contador, (190,10))
+        self.fonte = pygame.font.Font(None, 18)
+        self.contador = self.fonte.render(f'Nebulosas: {stars}', False, 'White')
+        self.screen.blit(self.contador, (195,10))
         #Barra interior, que representa o vazio
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (190, 25)
-        rect_color = (255, 255, 255) #White
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 20))
+        rect_color = (227, 185, 255) 
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 15))
         self.screen.blit(rect_surface, rect_position)
         #Barra exterior, que representa a quantidade
         filling = (stars / max_nebulae) * bar_width
@@ -117,30 +120,37 @@ class Player(pygame.sprite.Sprite):
             filling = bar_width
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (190, 25)
-        rect_color = (75, 0, 130) #Indigo
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 20))
+        rect_color = (75, 0, 130) 
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 15))
         self.screen.blit(rect_surface, rect_position)
+        #nebulosa:
+        self.cloud = pygame.image.load(f'./assets/tiles/nuvem.png')
+        self.screen.blit(self.cloud, (170, 15))
+            
 
     def count_life(self, stars):
         max_life = 5
         bar_width = 100
         #Titulo do coletável
-        self.fonte = pygame.font.Font(None, 20)
-        self.contador = self.fonte.render(f'VIDA: {max_life - stars}', False, 'White')
+        self.fonte = pygame.font.Font(None, 18)
+        self.contador = self.fonte.render(f'Vida: {max_life - stars}', False, 'White')
         self.screen.blit(self.contador, (360,10))
         #Barra interior, que representa a perda de vida
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (360, 25)
-        rect_color = (255, 255, 255) #White
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 20))
+        rect_color = (255, 127, 127) 
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, bar_width, 15))
         self.screen.blit(rect_surface, rect_position)
         #Barra exterior, que representa a perda de vida
         filling = ((max_life - stars )/max_life) * bar_width
         rect_surface = pygame.Surface((100, 100), pygame.SRCALPHA)
         rect_position = (360, 25)
-        rect_color = (0, 100, 0) #Dark Green
-        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 20))
+        rect_color = (255, 0, 0) #Dark Green
+        self.score = pygame.draw.rect(rect_surface, rect_color, (0, 0, filling, 15))
         self.screen.blit(rect_surface, rect_position)
+        #Coração:
+        self.stella = pygame.image.load(f'./assets/tiles/heart.png')
+        self.screen.blit(self.stella, (263, -70))
             
     def update(self):
         self.input()
@@ -150,4 +160,5 @@ class Player(pygame.sprite.Sprite):
         self.count_stars(self.stars)
         self.count_nebula(self.stars)
         self.count_life(self.stars)
+        
 
