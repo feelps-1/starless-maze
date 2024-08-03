@@ -1,11 +1,13 @@
 import pygame
 from settings import *
+from hud import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen, controller):
         super().__init__(groups)
         self.image = pygame.image.load('./assets/player/front/spr_playerfront1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
+        self.hitbox = self.rect.inflate(0, -7)
         self.hitbox = self.rect.inflate(0, -7)
 
         self.direction = pygame.math.Vector2()
@@ -15,7 +17,14 @@ class Player(pygame.sprite.Sprite):
         self.collectibles_sprites = collectibles_sprites
         self.screen = screen
 
+        self.health= 5
         self.stars = 0
+        self.nebulae = 0
+
+        self.healthcounter = Counter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
+        self.starscounter = Counter('Stars', self.stars, 3, self.screen, (190, 25), COUNTER_BACKGROUND, (255, 243, 70))
+        self.nebulaecounter = Counter('Nebulae', self.nebulae, 3,self.screen, (360, 70), COUNTER_BACKGROUND, (132, 0, 200))
+        
         self.controller = controller
         
     def input(self, controller):
@@ -158,8 +167,7 @@ def count_stars(self, stars):
         self.move(self.speed)
         self.collision(self.direction)
         self.dark(self.stars)
-        self.count_stars(self.stars)
-        self.count_nebula(self.stars)
-        self.count_life(self.stars)
+        self.healthcounter.drawCounter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
+        self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 3,self.screen, (190, 25), COUNTER_BACKGROUND, (132, 0, 200))
+        self.starscounter.drawCounter('Stars', self.stars, 3, self.screen, (360, 25), COUNTER_BACKGROUND, (255, 243, 70))
         
-
