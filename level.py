@@ -1,4 +1,5 @@
 import pygame
+import pygame.mixer
 from settings import *
 from tile import Tile
 from player import Player
@@ -16,6 +17,9 @@ class Level():
         self.screen = screen
 
         self.create_map(two=False)
+
+        pygame.mixer.music.load('./audio/ds.wav')
+        pygame.mixer.music.play(-1)
 
     def create_map(self, two):
         layouts = {
@@ -46,7 +50,7 @@ class Level():
                             surface = graphics['objects'][int(col)-2]
                             Tile((x, y), [self.collision_sprites, self.visible_sprites], 'object', surface)
 
-        Tile((32, 32), [self.visible_sprites, self.collectibles_sprites], 'collectible', pygame.image.load('./assets/tiles/grass/rock.png'))
+        Tile((32, 32), [self.visible_sprites, self.collectibles_sprites], 'collectible', pygame.image.load('./assets/icons/Stars.png'))
         if two:
             self.player = Player((PLAYER_START_X+32, PLAYER_START_Y+32), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.screen, 2)
 
