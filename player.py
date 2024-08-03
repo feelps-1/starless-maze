@@ -2,7 +2,7 @@ import pygame
 from settings import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen):
+    def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen, controller):
         super().__init__(groups)
         self.image = pygame.image.load('./assets/player/front/spr_playerfront1.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
@@ -16,20 +16,27 @@ class Player(pygame.sprite.Sprite):
         self.screen = screen
 
         self.stars = 0
+        self.controller = controller
         
-    def input(self):
+    def input(self, controller):
+        controls = {
+            1: [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a],
+            2: [pygame.K_UP, pygame.K_DOWN, pygame.K_RIGHT, pygame.K_LEFT],
+        }
+
+
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_w]:
+        if keys[controls[controller][0]]:
             self.direction.y = -1
-        elif keys[pygame.K_s]:
+        elif keys[controls[controller][1]]:
             self.direction.y = 1
         else: 
             self.direction.y = 0
 
-        if keys[pygame.K_d]:
+        if keys[controls[controller][2]]:
             self.direction.x = 1
-        elif keys[pygame.K_a]:
+        elif keys[controls[controller][3]]:
             self.direction.x = -1
         else:
             self.direction.x = 0
@@ -80,7 +87,7 @@ class Player(pygame.sprite.Sprite):
         self.screen.blit(self.escuro, (0,0))
             
     def update(self):
-        self.input()
+        self.input(self.controller)
         self.move(self.speed)
         self.collision(self.direction)
         self.count(self.stars)

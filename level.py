@@ -15,9 +15,9 @@ class Level():
 
         self.screen = screen
 
-        self.create_map()
+        self.create_map(two=False)
 
-    def create_map(self):
+    def create_map(self, two):
         layouts = {
             'boundary': import_csv_layout('./assets/maps/positions/collisionmaze1_Collision.csv'),
             'grass': import_csv_layout('./assets/maps/positions/collisionmaze1_Grass.csv'),
@@ -47,8 +47,10 @@ class Level():
                             Tile((x, y), [self.collision_sprites, self.visible_sprites], 'object', surface)
 
         Tile((32, 32), [self.visible_sprites, self.collectibles_sprites], 'collectible', pygame.image.load('./assets/tiles/grass/rock.png'))
+        if two:
+            self.player = Player((PLAYER_START_X+32, PLAYER_START_Y+32), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.screen, 2)
 
-        self.player = Player((PLAYER_START_X, PLAYER_START_Y), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.screen)
+        self.player = Player((PLAYER_START_X, PLAYER_START_Y), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.screen, 1)
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)
