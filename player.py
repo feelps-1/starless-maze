@@ -1,11 +1,12 @@
 import pygame
 from settings import *
 from hud import *
+from support import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen, controller):
         super().__init__(groups)
-        self.image = pygame.image.load('./assets/player/front/spr_playerfront1.png').convert_alpha()
+        self.image = pygame.image.load('./assets/player/down/spr_playerdown0.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -7)
         self.hitbox = self.rect.inflate(0, -7)
@@ -17,6 +18,11 @@ class Player(pygame.sprite.Sprite):
         self.collectibles_sprites = collectibles_sprites
         self.screen = screen
 
+        self.import_player_assets()
+        self.state = 'down'
+        self.frame_index = 0
+        self.animation_speed = 0.12
+
         self.health= 5
         self.stars = 0
         self.nebulae = 0
@@ -26,6 +32,18 @@ class Player(pygame.sprite.Sprite):
         self.nebulaecounter = Counter('Nebulae', self.nebulae, 3,self.screen, (360, 70), COUNTER_BACKGROUND, (132, 0, 200))
         
         self.controller = controller
+
+    def import_player_assets(self):
+        character_path = './assets/player/'
+
+        self.animations = {'up': [], 'down': [], 'left': [], 'right': [], 
+                           'up_idle': [], 'down_idle': [], 'left_idle': [], 'right_idle': []}
+        
+        for animation in self.animations.keys():
+            full_path = character_path+animation
+            self.animations[animation] = import_folder(full_path)
+
+        print(self.animations)
         
     def input(self, controller):
         controls = {
@@ -38,18 +56,27 @@ class Player(pygame.sprite.Sprite):
 
         if keys[controls[controller][0]]:
             self.direction.y = -1
+            self.state = 'up'
         elif keys[controls[controller][1]]:
             self.direction.y = 1
+            self.state = 'down'
         else: 
             self.direction.y = 0
 
         if keys[controls[controller][2]]:
             self.direction.x = 1
+            self.state = 'right'
         elif keys[controls[controller][3]]:
             self.direction.x = -1
+            self.state = 'left'
         else:
             self.direction.x = 0
 
+    def get_state(self):
+        if self.direction.x == 0 and self.direction.y == 0:
+            if not 'idle' in self.state:
+                self.state = self.state + '_idle'
+    
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
@@ -85,6 +112,16 @@ class Player(pygame.sprite.Sprite):
                 collectibles.kill()
                 self.stars += 1
 
+    def animate(self):
+        animation = self.animations[self.state]
+
+        self.frame_index += self.animation_speed
+        if self.frame_index >= len(animation):
+            self.frame_index = 0
+
+        self.image = animation[int(self.frame_index)]
+        self.rect = self.image.get_rect(center = self.hitbox.center)
+
     def dark(self, stars):
         self.escuro = pygame.image.load(f'./assets/maps/tocha{stars}.png').convert_alpha()
         self.escuro = pygame.transform.scale(self.escuro, (SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -95,6 +132,8 @@ class Player(pygame.sprite.Sprite):
         self.move(self.speed)
         self.collision(self.direction)
         self.dark(self.stars)
+        self.get_state()
+        self.animate()
         self.healthcounter.drawCounter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
         self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 3,self.screen, (190, 25), COUNTER_BACKGROUND, (132, 0, 200))
         self.starscounter.drawCounter('Stars', self.stars, 3, self.screen, (360, 25), COUNTER_BACKGROUND, (255, 243, 70))
