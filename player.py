@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from hud import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen, controller):
@@ -15,7 +16,14 @@ class Player(pygame.sprite.Sprite):
         self.collectibles_sprites = collectibles_sprites
         self.screen = screen
 
+        self.health= 5
         self.stars = 0
+        self.nebulae = 0
+
+        self.healthcounter = Counter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
+        self.starscounter = Counter('Stars', self.stars, 3, self.screen, (190, 25), COUNTER_BACKGROUND, (255, 243, 70))
+        self.nebulaecounter = Counter('Nebulae', self.nebulae, 3,self.screen, (360, 70), COUNTER_BACKGROUND, (132, 0, 200))
+        
         self.controller = controller
         
     def input(self, controller):
@@ -92,4 +100,7 @@ class Player(pygame.sprite.Sprite):
         self.collision(self.direction)
         self.count(self.stars)
         self.dark(self.stars)
+        self.healthcounter.drawCounter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
+        self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 3,self.screen, (190, 25), COUNTER_BACKGROUND, (132, 0, 200))
+        self.starscounter.drawCounter('Stars', self.stars, 3, self.screen, (360, 25), COUNTER_BACKGROUND, (255, 243, 70))
         
