@@ -18,18 +18,18 @@ class Level():
 
         self.create_map(two=False)
 
-        pygame.mixer.music.load('./audio/ds.wav')
+        pygame.mixer.music.load('assets/audio/ds.wav')
         pygame.mixer.music.play(-1)
 
     def create_map(self, two):
         layouts = {
-            'boundary': import_csv_layout('./assets/maps/positions/collisionmaze1_Collision.csv'),
-            'grass': import_csv_layout('./assets/maps/positions/collisionmaze1_Grass.csv'),
-            'objects': import_csv_layout('./assets/maps/positions/collisionmaze1_Objects.csv')
+            'boundary': import_csv_layout('assets/maps/positions/collisionmaze1_Collision.csv'),
+            'grass': import_csv_layout('assets/maps/positions/collisionmaze1_Grass.csv'),
+            'objects': import_csv_layout('assets/maps/positions/collisionmaze1_Objects.csv')
         }
         graphics = {
-            'grass': import_folder('./assets/tiles/grass'),
-            'objects': import_folder('./assets/tiles/objects')
+            'grass': import_folder('assets/tiles/grass'),
+            'objects': import_folder('assets/tiles/objects')
         }
 
         for style, layout in layouts.items():
@@ -68,7 +68,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
-        self.floor_surface = pygame.image.load('./assets/maps/maze1.png').convert()
+        self.floor_surface = pygame.image.load('assets/maps/maze1.png').convert()
         self.floor_rect = self.floor_surface.get_rect(topleft = (0, 0))
 
     def custom_draw(self, player):
