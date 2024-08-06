@@ -22,7 +22,7 @@ class Level():
 
         self.create_map(two=False)
 
-        self.music = pygame.mixer.Sound('assets/audio/ds.wav')
+        self.music = pygame.mixer.Sound('assets/audio/firelink.wav')
         self.music.set_volume(0.1)
         self.music.play(-1)
 

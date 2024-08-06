@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_speed = 0.12
 
         self.health= 5
-        self.stars = 0
+        self.stars = 2
         self.nebulae = 0
 
         self.healthcounter = Counter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
@@ -143,9 +143,12 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = self.hitbox.center)
 
     def dark(self, stars):
-        self.escuro = pygame.image.load(f'./assets/maps/tocha{stars}.png').convert_alpha()
-        self.escuro = pygame.transform.scale(self.escuro, (SCREEN_WIDTH, SCREEN_HEIGHT))
-        self.screen.blit(self.escuro, (0,0))
+        if stars < 3:
+            self.escuro = pygame.image.load(f'./assets/maps/tocha{stars}.png').convert_alpha()
+            self.escuro = pygame.transform.scale(self.escuro, (SCREEN_WIDTH, SCREEN_HEIGHT))
+            self.screen.blit(self.escuro, (0,0))
+        else: 
+            pass
 
     def update(self):
         self.input(self.controller)
