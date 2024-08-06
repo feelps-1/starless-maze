@@ -1,4 +1,5 @@
 import pygame
+import pygame.mixer
 from settings import *
 from hud import *
 from support import *
@@ -13,6 +14,8 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = pygame.math.Vector2()
         self.speed = PLAYER_SPEED
+
+        pygame.mixer.music.load('assets/audio/ds_item.wav')
 
         self.colision_sprites = collision_sprites
         self.collectibles_sprites = collectibles_sprites
@@ -109,6 +112,8 @@ class Player(pygame.sprite.Sprite):
                 self.collectibles_sprites.remove(collectibles)
                 collectibles.kill()
                 self.stars += 1
+                pygame.mixer.music.play(1)
+                
 
     def animate(self):
         animation = self.animations[self.state]
