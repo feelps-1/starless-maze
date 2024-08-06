@@ -5,7 +5,7 @@ from hud import *
 from support import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen, controller):
+    def __init__(self, pos, groups, collision_sprites, collectibles_sprites, collectibles_stars, collectibles_nebulae, collectibles_bombs, screen, controller):
         super().__init__(groups)
         self.image = pygame.image.load('./assets/player/down/spr_playerdown0.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
@@ -15,10 +15,11 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2()
         self.speed = PLAYER_SPEED
 
-        pygame.mixer.music.load('assets/audio/ds_item.wav')
-
         self.colision_sprites = collision_sprites
         self.collectibles_sprites = collectibles_sprites
+        self.collectibles_stars = collectibles_stars
+        self.collectibles_nebulae = collectibles_nebulae
+        self.collectibles_bombs = collectibles_bombs
         self.screen = screen
 
         self.import_player_assets()
@@ -108,12 +109,28 @@ class Player(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
                         
         for collectibles in self.collectibles_sprites:
-            if collectibles.hitbox.colliderect(self.hitbox):
-                self.collectibles_sprites.remove(collectibles)
-                collectibles.kill()
-                self.stars += 1
-                pygame.mixer.music.play(1)
-                
+             if collectibles.hitbox.colliderect(self.hitbox):
+                if collectibles in self.collectibles_stars:
+                    self.collectibles_sprites.remove(collectibles)
+                    collectibles.kill()
+                    self.stars += 1
+                    pygame.mixer.music.load('assets/audio/ds_item.wav')
+                    pygame.mixer.music.play(1)
+                elif collectibles in self.collectibles_nebulae:
+                    self.collectibles_sprites.remove(collectibles)
+                    collectibles.kill()
+                    if 3 > self.nebulae:
+                        self.nebulae += 1
+                    if 5 > self.health:
+                        self.health += 1
+                    pygame.mixer.music.load('assets/audio/ds_item.wav')
+                    pygame.mixer.music.play(1)
+                elif collectibles in self.collectibles_bombs:
+                    self.collectibles_sprites.remove(collectibles)
+                    collectibles.kill()
+                    self.health -= 1
+                    pygame.mixer.music.load('assets/audio/bomba.wav')
+                    pygame.mixer.music.play(1)
 
     def animate(self):
         animation = self.animations[self.state]
