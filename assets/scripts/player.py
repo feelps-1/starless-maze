@@ -32,9 +32,10 @@ class Player(pygame.sprite.Sprite):
         self.nebulae = 0
         self.bomb = 0
 
-        self.healthcounter = Counter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
-        self.starscounter = Counter('Stars', self.stars, 3, self.screen, (190, 25), COUNTER_BACKGROUND, (255, 243, 70))
-        self.nebulaecounter = Counter('Nebulae', self.nebulae, 3,self.screen, (360, 70), COUNTER_BACKGROUND, (132, 0, 200))
+        self.healthcounter = Counter('Health', self.health, self.screen)
+        self.starscounter = Counter('Stars', self.stars, self.screen)
+        self.nebulaecounter = Counter('Nebulae', self.nebulae, self.screen)
+        self.bombcounter = Counter('Bomb', self.bomb, self.screen)
 
     def import_player_assets(self):
         character_path = './assets/player/'
@@ -194,9 +195,6 @@ class Player(pygame.sprite.Sprite):
         self.healthcounter.drawCounter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
         self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 4, self.screen, (150, 25), COUNTER_BACKGROUND, (132, 0, 200))
         self.starscounter.drawCounter('Stars', self.stars, 3, self.screen, (280, 25), COUNTER_BACKGROUND, (255, 243, 70))
+        self.bombcounter.drawSimple('Bomb', self.bomb, self.screen, (425,22))
         
-        self.font = pygame.font.Font(None, 30)
-        self.contador = self.font.render(f'{self.bomb}', False, 'White')
-        self.screen.blit(self.contador, (425, 22))
-        self.bomb_icon = pygame.image.load(f'./assets/icons/Bomb.png').convert_alpha()
-        self.screen.blit(self.bomb_icon, (390, 10))
+        

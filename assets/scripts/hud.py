@@ -2,16 +2,10 @@ import pygame
 from settings import *
 
 class Counter():
-    def __init__(self, item, quantity, maxitems, screen, position, innercolor, outercolor):
+    def __init__(self, item, quantity, screen):
         self.item = item
         self.quantity = quantity
-        self.maxitems = maxitems
         self.screen = screen
-        self.position = position
-        self.innercolor = innercolor
-        self.outercolor = outercolor
-
-        self.drawCounter(self.item, self.quantity, self.maxitems, self.screen, self.position, self.innercolor, self.outercolor)
 
     def drawCounter(self, item, quantity, maxitems, screen, position, innercolor, outercolor):
         self.maxitems = maxitems
@@ -33,3 +27,10 @@ class Counter():
         self.screen.blit(rect_surface, self.position)
         self.icon = pygame.image.load(f'./assets/icons/{item}.png')
         self.screen.blit(self.icon, (self.position[0]-20, self.position[1]-10))
+
+    def drawSimple(self, item, quantity ,screen, position):
+        self.font = pygame.font.Font(None, 30)
+        self.contador = self.font.render(f'{quantity}', False, 'White')
+        self.screen.blit(self.contador, position)
+        self.icon = pygame.image.load(f'./assets/icons/{item}.png').convert_alpha()
+        self.screen.blit(self.icon, (position[0]-35, position[1]-12))
