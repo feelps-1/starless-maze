@@ -20,13 +20,14 @@ class Level():
 
         self.screen = screen
 
-        self.create_map(two=False)
+        self.create_map()
 
         self.music = pygame.mixer.Sound('assets/audio/firelink.wav')
         self.music.set_volume(0.1)
         self.music.play(-1)
+        self.restart = False
 
-    def create_map(self, two):
+    def create_map(self):
         layouts = {
             'boundary': import_csv_layout('assets/maps/positions/collisionmaze1_Collision.csv'),
             'grass': import_csv_layout('assets/maps/positions/collisionmaze1_Grass.csv'),
@@ -102,14 +103,13 @@ class Level():
         Collectible((800, 800), [self.visible_sprites, self.collectibles_sprites, self.collectibles_bombs], 'collectible', pygame.image.load('./assets/icons/Bomb.png'))
         Collectible((800, 320), [self.visible_sprites, self.collectibles_sprites, self.collectibles_bombs], 'collectible', pygame.image.load('./assets/icons/Bomb.png'))
     
-        if two:
-            self.player = Player((PLAYER_START_X+32, PLAYER_START_Y+32), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.collectibles_stars, self.collectibles_nebulae, self.collectibles_bombs, self.screen, 2)
-
-        self.player = Player((PLAYER_START_X, PLAYER_START_Y), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.collectibles_stars, self.collectibles_nebulae, self.collectibles_bombs, self.screen, 1)
+        self.player = Player((PLAYER_START_X, PLAYER_START_Y), [self.visible_sprites], self.collision_sprites, self.collectibles_sprites, self.collectibles_stars, self.collectibles_nebulae, self.collectibles_bombs, self.screen)
 
     def run(self):
         self.visible_sprites.custom_draw(self.player)
-        self.visible_sprites.update()
+        self.visible_sprites.update() 
+        if self.player.restart == True:
+            self.restart = True
 
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):

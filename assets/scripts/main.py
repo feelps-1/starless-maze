@@ -32,6 +32,10 @@ class Game():
             self.screen.fill('black')
             self.level.run()
 
+            if self.level.restart == True:
+                self.run()
+                return
+
             pygame.display.update()
             self.clock.tick(FPS)
 
