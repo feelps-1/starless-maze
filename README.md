@@ -13,7 +13,7 @@ Mas a ira de Zeus por Hipnos nunca se acalmou, pelo contrário, apenas cresceu. 
 |[Felipe Oliveira](https://github.com/feelps-1)                                                                  | [Paulo César](https://github.com/paulo-cesar-pereira)                                                       | [Thaphylla Ayanny](https://github.com/tatudep)                                                                    | [Artur Machado](https://github.com/Artur-Mac)|[Matheus Sobreira](https://github.com/Mhtz-01)|[Mateus Alexandre](https://github.com/Alexslec)|             |
 
 ## Objetivos e descrição do jogo
-Este é um projeto para a disciplina de Introdução à Programação na Universidade Federal de Pernambuco (UFPE). Neste projeto desenvolvemos um jogo ao qual nomeamos de "Starless Maze" cujo objetivo do jogo é explorar um labirinto e encontrar os itens necessários para libertar o mundo da escuridão, esses itens são as Estrelas e as Nebulosas, ao serem coletadas 3 Estrelas e 4 Nebulosas, o jogo é finalizado libertando o mundo da escuridão. Também temos as bombas para atrapalhar o jogador, pois são coletáveis e reduzem sua vida. As estrelas aumentam o raio de iluminação que o personagem consegue enxergar e as nebulosas recuperam sua vida perdida.
+Este é um projeto para a disciplina de Introdução à Programação na Universidade Federal de Pernambuco (UFPE). Neste projeto desenvolvemos um jogo ao qual nomeamos de "Starless Maze" cujo objetivo do jogo é explorar um labirinto e encontrar os itens necessários para libertar o mundo da escuridão, esses itens são as Estrelas e as Nebulosas, ao serem coletadas 3 Estrelas e 3 Nebulosas, o jogo é finalizado libertando o mundo da escuridão. Também temos as bombas para atrapalhar o jogador, pois são coletáveis e reduzem sua vida. As estrelas aumentam o raio de iluminação que o personagem consegue enxergar e as nebulosas recuperam sua vida perdida.
 
 ## Organização do nosso desenvolvimento
 
@@ -83,4 +83,4 @@ Antes de tudo, garanta que você possui um compilador que rode a linguagem de pr
 2. Colete Estrelas e Nebulosas para conseguir finalizar a história;
 3. Evite as bombas para não perder vida e possívelmente morrer.
 
-*As estrelas dão +1 de luz, as nebulosas + 1 de vida, enquanto as bombas - 1 de vida. Colete 3 estrelas e 3 nebulosas e ganhe, salvando Nix e o mundo.*
+
