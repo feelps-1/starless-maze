@@ -28,6 +28,16 @@ class Level():
         self.restart = False
 
     def create_map(self):
+        graphics = {
+            'grass': import_folder('assets/tiles/grass'),
+            'objects': import_folder('assets/tiles/objects'),
+            'collectibles': import_folder('assets/collectible/')
+        }
+        collectibles = {
+            1: 'Nebulae',
+            2: 'Stars',
+            3: 'Bomb'
+        }
         layouts = {
             'boundary': import_csv_layout('assets/maps/positions/collisionmaze1_Collision.csv'),
             'grass': import_csv_layout('assets/maps/positions/collisionmaze1_Grass.csv'),
@@ -35,18 +45,7 @@ class Level():
             'collectibles': import_csv_layout('assets/maps/positions/collisionmaze1_Collectibles.csv'),
             'entities': import_csv_layout('assets/maps/positions/collisionmaze1_Entities.csv') 
         }
-        graphics = {
-            'grass': import_folder('assets/tiles/grass'),
-            'objects': import_folder('assets/tiles/objects'),
-            'collectibles': import_folder('assets/collectible/')
-        }
-
-        collectibles = {
-            1: 'Nebulae',
-            2: 'Stars',
-            3: 'Bomb'
-        }
-
+        
         for style, layout in layouts.items():
             for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
@@ -55,7 +54,7 @@ class Level():
                         y = row_index * TILE_SIZE
                     
                         if style == 'boundary':
-                            Tile((x,y), [self.collision_sprites], 'invisible')
+                            Tile((x, y), [self.collision_sprites], 'invisible')
 
                         if style == 'grass':
                             random_grass = choice(graphics['grass'])
