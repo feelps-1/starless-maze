@@ -83,4 +83,4 @@ Antes de tudo, garanta que você possui um compilador que rode a linguagem de pr
 2. Colete Estrelas e Nebulosas para conseguir finalizar a história;
 3. Evite as bombas para não perder vida e possívelmente morrer.
 
-*As estrelas dão +1 de luz, as nebulosas + 1 de vida, enquanto as bombas - 1 de vida.*
+*As estrelas dão +1 de luz, as nebulosas + 1 de vida, enquanto as bombas - 1 de vida. Colete 3 estrelas e 3 nebulosas e ganhe, salvando Nix e o mundo.*
