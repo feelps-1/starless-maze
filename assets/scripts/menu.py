@@ -8,7 +8,7 @@ class Menu:
         self.screen = game.screen
         self.clock = game.clock
         
-        self.font = pygame.font.Font('assets/menu/d_font.ttf', 12)  
+        self.font = pygame.font.Font('assets/menu/d_font.ttf', 12)
         self.options = ["Iniciar Jogo", "Sair"]
         self.selected_option = 0
         
@@ -22,18 +22,14 @@ class Menu:
         self.screen.blit(self.background_image, (0, 0))
         
         for idx, option in enumerate(self.options):
-            color = 'grey' if idx == self.selected_option else 'grey'
+            color = 'grey' if idx == self.selected_option else 'white'
             
             text = self.font.render(option, True, color)
             rect = text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + idx * 60))
             self.screen.blit(text, rect)
             
             if idx == self.selected_option:
-                
-                if idx == 0:
-                    arrow_x = SCREEN_WIDTH / 2 - 100
-                else:
-                    arrow_x = SCREEN_WIDTH / 2 - 50  
+                arrow_x = SCREEN_WIDTH / 2 - 100
                 arrow_rect = self.arrow_image.get_rect(center=(arrow_x, SCREEN_HEIGHT / 2 + idx * 60))
                 self.screen.blit(self.arrow_image, arrow_rect)
 
@@ -46,11 +42,11 @@ class Menu:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w:  
+                    if event.key == pygame.K_w:
                         self.selected_option = (self.selected_option - 1) % len(self.options)
-                    if event.key == pygame.K_s:  
+                    if event.key == pygame.K_s:
                         self.selected_option = (self.selected_option + 1) % len(self.options)
-                    if event.key == pygame.K_RETURN or event.key == pygame.K_d: 
+                    if event.key == pygame.K_RETURN or event.key == pygame.K_d:
                         if self.selected_option == 0:
                             return 'start_game'
                         if self.selected_option == 1:
@@ -66,7 +62,7 @@ class Menu:
         background_image = pygame.image.load('assets/menu/spr_bg.png').convert()
         background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        font = pygame.font.Font('assets/menu/d_font.ttf', 24)  
+        font = pygame.font.Font('assets/menu/d_font.ttf', 24)
         
         self.screen.blit(background_image, (0, 0))
         text_surface = font.render(intro_text, True, 'black')
@@ -77,10 +73,10 @@ class Menu:
         pygame.time.wait(2500)
 
     def show_story(self):
-        story_text = ("Agora, ó herói, toda a esperança do mundo recai sobre vossos ombros, "
-                      "até mesmo dos deuses imortais. Deveis desafiar o Starless Maze, "
-                      "onde a escuridão habita densamente e com grande poder. Quebrai as prisões, "
-                      "buscai as essências da Noite e fazei Nix voltar à sanidade, "
+        story_text = ("Agora, ó herói, toda a esperança do mundo recai sobre vossos ombros, \n "
+                      "até mesmo dos deuses imortais. Deveis desafiar o Starless Maze,\n "
+                      "onde a escuridão habita densamente e com grande poder. \n"
+                      "Quebrai as prisões, buscai as essências da Noite e fazei Nix voltar à sanidade, \n "
                       "devolvendo-lhe seus poderes e o mundo será salvo do escuro sem fim.")
         
         background_image = pygame.image.load('assets/menu/background2.jpg').convert()
@@ -114,4 +110,41 @@ class Menu:
             y_offset += line_height
         
         pygame.display.update()
-        pygame.time.wait(5000)
+        pygame.time.wait(8000)
+
+    def show_instructions(self):
+        title_text = "Instruções"
+        instructions_text = (
+            "O objetivo principal é você explorar o \n"
+            "labirinto em busca de nebulosas e estrelas, \n"
+            "ao coletar 3 de cada você terá concluído \n"
+            "sua missão e o jogo será encerrado, \n"
+            "tenha cuidado com as bombas elas tiram sua vida.\n\n"
+            "Estrela = +luz\n"
+            "Nebulosa = recupera vida\n"
+            "Bomba = perde vida\n\n"
+            "Use as teclas WASD para mover o herói"
+        )
+        
+        background_image = pygame.image.load('assets/menu/background2.jpg').convert()
+        background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+        
+        title_font = pygame.font.Font('assets/menu/d_font.ttf', 18)
+        text_font = pygame.font.Font('assets/menu/d_font.ttf', 7)
+        
+        self.screen.blit(background_image, (0, 0))
+        
+        title_surface = title_font.render(title_text, True, 'grey')
+        title_rect = title_surface.get_rect(center=(SCREEN_WIDTH / 2, 50)) 
+        self.screen.blit(title_surface, title_rect)
+        
+        y_offset = 100  
+        for line in instructions_text.split('\n'):
+            text_surface = text_font.render(line, True, 'grey')
+            text_rect = text_surface.get_rect(center=(SCREEN_WIDTH / 2, y_offset))
+            self.screen.blit(text_surface, text_rect)
+            y_offset += 30  
+        
+        pygame.display.update()
+        
+        pygame.time.wait(10000)

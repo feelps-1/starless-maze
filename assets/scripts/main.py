@@ -19,6 +19,7 @@ class Game():
             action = self.menu.run()
             if action == 'start_game':
                 self.menu.show_story()
+                self.menu.show_instructions()
                 self.start_game()
 
     def start_game(self):
