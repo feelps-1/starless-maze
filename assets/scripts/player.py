@@ -4,6 +4,7 @@ from settings import *
 from hud import *
 from support import *
 import sys
+import sys
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen):
