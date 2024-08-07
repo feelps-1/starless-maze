@@ -180,7 +180,7 @@ class Player(pygame.sprite.Sprite):
         if self.health <= 0:
             self.game_over_screen()
 
-        if self.nebulae == 4 and self.stars == 3:
+        if self.nebulae == 3 and self.stars == 3:
             self.win_screen()
         
     def update(self):
@@ -193,7 +193,7 @@ class Player(pygame.sprite.Sprite):
         self.check_end()
 
         self.healthcounter.drawCounter('Health', self.health, 5, self.screen, (20, 25), COUNTER_BACKGROUND, (255, 0, 0))
-        self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 4, self.screen, (150, 25), COUNTER_BACKGROUND, (132, 0, 200))
+        self.nebulaecounter.drawCounter('Nebulae', self.nebulae, 3, self.screen, (150, 25), COUNTER_BACKGROUND, (132, 0, 200))
         self.starscounter.drawCounter('Stars', self.stars, 3, self.screen, (280, 25), COUNTER_BACKGROUND, (255, 243, 70))
         self.bombcounter.drawSimple('Bomb', self.bomb, self.screen, (425,22))
         
