@@ -78,7 +78,9 @@ Com o aprimoramento, fica mais fácil de perceber as partes do projeto em que ca
 
 ### Instruções para a execução do Jogo
 
-Antes de tudo, garanta que você possui um compilador que rode a linguagem de programação Python. Certifique-se também que possua o Python instalado no seu computador, e, após isso, caso você esteja no windows, basta abrir o terminal do seu compilador e digitar "pip install pygame" para instalar o pygame no seu compilador. Tendo tudo isso, é só baixar arquivos disponíveis nesse repositório e executá-lo. Por fim, siga as instruções e se divirta:
-1. Use as teclas wasd para se movimentar na direção que desejar.
-2. Colete Estrelas e Nebulosas para conseguir finalizar a história
-3. Evite as bombas para não perder vida e possívelmente morrer
+Antes de tudo, garanta que você possui um compilador que rode a linguagem de programação Python. Certifique-se também que possua o Python instalado no seu computador, e, após isso, basta  instalar o pygame no seu compilador: caso você esteja no windows, basta abrir o terminal do seu compilador e digitar "pip install pygame" ou "sudo apt-get install python3 *(pode ser outra versão)*" se estiver usando o ubuntu. Tendo tudo isso, é só baixar arquivos disponíveis nesse repositório e executá-los. Por fim, siga as instruções e se divirta:
+1. Use as teclas *wasd* para se movimentar na direção que desejar;
+2. Colete Estrelas e Nebulosas para conseguir finalizar a história;
+3. Evite as bombas para não perder vida e possívelmente morrer.
+
+*As estrelas dão +1 de luz, as nebulosas + 1 de vida, enquanto as bombas - 1 de vida.*
