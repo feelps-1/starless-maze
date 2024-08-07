@@ -114,4 +114,4 @@ class Menu:
             y_offset += line_height
         
         pygame.display.update()
-        pygame.time.wait(10000)
+        pygame.time.wait(5000)
