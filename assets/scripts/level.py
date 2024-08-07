@@ -22,16 +22,16 @@ class Level():
 
         self.create_map()
 
-        self.music = pygame.mixer.Sound('assets/audio/firelink.wav')
+        self.music = pygame.mixer.Sound('../audio/firelink.wav')
         self.music.set_volume(0.1)
         self.music.play(-1)
         self.restart = False
 
     def create_map(self):
         graphics = {
-            'grass': import_folder('assets/tiles/grass'),
-            'objects': import_folder('assets/tiles/objects'),
-            'collectibles': import_folder('assets/collectible/')
+            'grass': import_folder('../tiles/grass'),
+            'objects': import_folder('../tiles/objects'),
+            'collectibles': import_folder('../collectible/')
         }
         collectibles = {
             1: 'Nebulae',
@@ -39,11 +39,11 @@ class Level():
             3: 'Bomb'
         }
         layouts = {
-            'boundary': import_csv_layout('assets/maps/positions/collisionmaze1_Collision.csv'),
-            'grass': import_csv_layout('assets/maps/positions/collisionmaze1_Grass.csv'),
-            'objects': import_csv_layout('assets/maps/positions/collisionmaze1_Objects.csv'),
-            'collectibles': import_csv_layout('assets/maps/positions/collisionmaze1_Collectibles.csv'),
-            'entities': import_csv_layout('assets/maps/positions/collisionmaze1_Entities.csv') 
+            'boundary': import_csv_layout('../maps/positions/collisionmaze1_Collision.csv'),
+            'grass': import_csv_layout('../maps/positions/collisionmaze1_Grass.csv'),
+            'objects': import_csv_layout('../maps/positions/collisionmaze1_Objects.csv'),
+            'collectibles': import_csv_layout('../maps/positions/collisionmaze1_Collectibles.csv'),
+            'entities': import_csv_layout('../maps/positions/collisionmaze1_Entities.csv') 
         }
         
         for style, layout in layouts.items():
@@ -86,7 +86,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
-        self.floor_surface = pygame.image.load('assets/maps/maze1.png').convert()
+        self.floor_surface = pygame.image.load('../maps/maze1.png').convert()
         self.floor_rect = self.floor_surface.get_rect(topleft = (0, 0))
 
     def custom_draw(self, player):

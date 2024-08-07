@@ -8,14 +8,14 @@ class Menu:
         self.screen = game.screen
         self.clock = game.clock
         
-        self.font = pygame.font.Font('assets/menu/d_font.ttf', 12)
+        self.font = pygame.font.Font('../menu/d_font.ttf', 12)
         self.options = ["Iniciar Jogo", "Sair"]
         self.selected_option = 0
         
-        self.background_image = pygame.image.load('assets/menu/background.jpg').convert()
+        self.background_image = pygame.image.load('../menu/background.jpg').convert()
         self.background_image = pygame.transform.scale(self.background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        self.arrow_image = pygame.image.load('assets/menu/seta.png').convert_alpha()
+        self.arrow_image = pygame.image.load('../menu/seta.png').convert_alpha()
         self.arrow_image = pygame.transform.scale(self.arrow_image, (30, 30))
 
     def draw(self):
@@ -59,10 +59,10 @@ class Menu:
     def show_intro(self):
         intro_text = "Starless Maze"
         
-        background_image = pygame.image.load('assets/menu/spr_bg.png').convert()
+        background_image = pygame.image.load('../menu/spr_bg.png').convert()
         background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        font = pygame.font.Font('assets/menu/d_font.ttf', 24)
+        font = pygame.font.Font('../menu/d_font.ttf', 24)
         
         self.screen.blit(background_image, (0, 0))
         text_surface = font.render(intro_text, True, 'black')
@@ -79,10 +79,10 @@ class Menu:
                       "Quebrai as prisões, buscai as essências da Noite e fazei Nix voltar à sanidade, \n "
                       "devolvendo-lhe seus poderes e o mundo será salvo do escuro sem fim.")
         
-        background_image = pygame.image.load('assets/menu/background2.jpg').convert()
+        background_image = pygame.image.load('../menu/background2.jpg').convert()
         background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        font = pygame.font.Font('assets/menu/d_font.ttf', 12)
+        font = pygame.font.Font('../menu/d_font.ttf', 12)
         
         self.screen.blit(background_image, (0, 0))
         
@@ -110,7 +110,7 @@ class Menu:
             y_offset += line_height
         
         pygame.display.update()
-        pygame.time.wait(8000)
+        pygame.time.wait(6000)
 
     def show_instructions(self):
         title_text = "Instruções"
@@ -126,11 +126,11 @@ class Menu:
             "Use as teclas WASD para mover o herói"
         )
         
-        background_image = pygame.image.load('assets/menu/background2.jpg').convert()
+        background_image = pygame.image.load('../menu/background2.jpg').convert()
         background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        title_font = pygame.font.Font('assets/menu/d_font.ttf', 18)
-        text_font = pygame.font.Font('assets/menu/d_font.ttf', 7)
+        title_font = pygame.font.Font('../menu/d_font.ttf', 18)
+        text_font = pygame.font.Font('../menu/d_font.ttf', 7)
         
         self.screen.blit(background_image, (0, 0))
         
@@ -147,4 +147,4 @@ class Menu:
         
         pygame.display.update()
         
-        pygame.time.wait(10000)
+        pygame.time.wait(8000)

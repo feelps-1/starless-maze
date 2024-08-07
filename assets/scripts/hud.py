@@ -25,12 +25,12 @@ class Counter():
             filling = bar_width
         self.score = pygame.draw.rect(rect_surface, self.outercolor, (0, 0, filling, 15))
         self.screen.blit(rect_surface, self.position)
-        self.icon = pygame.image.load(f'./assets/icons/{item}.png')
+        self.icon = pygame.image.load(f'../icons/{item}.png')
         self.screen.blit(self.icon, (self.position[0]-20, self.position[1]-10))
 
     def drawSimple(self, item, quantity ,screen, position):
         self.font = pygame.font.Font(None, 30)
         self.contador = self.font.render(f'{quantity}', False, 'White')
         self.screen.blit(self.contador, position)
-        self.icon = pygame.image.load(f'./assets/icons/{item}.png').convert_alpha()
+        self.icon = pygame.image.load(f'../icons/{item}.png').convert_alpha()
         self.screen.blit(self.icon, (position[0]-35, position[1]-12))

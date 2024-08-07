@@ -9,7 +9,7 @@ import sys
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, collectibles_sprites, screen):
         super().__init__(groups)
-        self.image = pygame.image.load('./assets/player/down/spr_playerdown0.png').convert_alpha()
+        self.image = pygame.image.load('../player/down/spr_playerdown0.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -7)
         self.hitbox = self.rect.inflate(0, -7)
@@ -38,7 +38,7 @@ class Player(pygame.sprite.Sprite):
         self.bombcounter = Counter('Bomb', self.bomb, self.screen)
 
     def import_player_assets(self):
-        character_path = './assets/player/'
+        character_path = '../player/'
 
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [], 
                            'up_idle': [], 'down_idle': [], 'left_idle': [], 'right_idle': []}
@@ -121,9 +121,9 @@ class Player(pygame.sprite.Sprite):
                     collectibles.kill()
 
                     if collectibles.sprite_type == "Stars" or collectibles.sprite_type == 'Nebulae':
-                        pygame.mixer.music.load('assets/audio/ds_item.wav') 
+                        pygame.mixer.music.load('../audio/ds_item.wav') 
                     else:
-                        pygame.mixer.music.load('assets/audio/bomb.wav') 
+                        pygame.mixer.music.load('../audio/bomb.wav') 
 
                     pygame.mixer.music.set_volume(0.3)
                     pygame.mixer.music.play(1)
@@ -140,14 +140,14 @@ class Player(pygame.sprite.Sprite):
 
     def dark(self, stars):
         if stars < 3:
-            self.escuro = pygame.image.load(f'./assets/maps/tocha{stars}.png').convert_alpha()
+            self.escuro = pygame.image.load(f'../maps/tocha{stars}.png').convert_alpha()
             self.escuro = pygame.transform.scale(self.escuro, (SCREEN_WIDTH, SCREEN_HEIGHT))
             self.screen.blit(self.escuro, (0,0))
         else: 
             pass
 
     def game_over_screen(self):
-        font = pygame.font.Font("assets/menu/d_font.ttf", 36)
+        font = pygame.font.Font("../menu/d_font.ttf", 36)
         text = font.render("Você morreu", True, (255, 0, 0))
         self.screen.fill((0, 0, 0))
         self.screen.blit(text, (self.screen.get_width() // 2 - text.get_width() // 2, self.screen.get_height() // 2 - text.get_height() // 2))
@@ -162,7 +162,7 @@ class Player(pygame.sprite.Sprite):
                 self.restart = True
 
     def win_screen(self):
-        font = pygame.font.Font("assets/menu/d_font.ttf", 36)
+        font = pygame.font.Font("../menu/d_font.ttf", 36)
         text = font.render("Nix salva", True, (255, 255, 0))
         self.screen.fill((0, 0, 0))
         self.screen.blit(text, (self.screen.get_width() // 2 - text.get_width() // 2, self.screen.get_height() // 2 - text.get_height() // 2))
