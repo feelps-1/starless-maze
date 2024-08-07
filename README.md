@@ -24,12 +24,12 @@ Para lidar com o desenvolvimento de um programa bem mais complexo do que aqueles
 Além das conversas presenciais nas aulas do CIn, mantivemos contato por aplicativos de mensagens. Além disso, a escrita ou atualização dos códigos eram feitas de modo bem legível e/ou com comentários, para que os outros pudessem acompanhar melhor. Quando toda a explicação de um assunto se fazia necessária, também compartilhávamos conteúdos didáticos.
 
 ### Divisão de tarefas entre os membros da equipe:
-- *Artur Machado*: Sprites, detalhamento final e ending;
-- *Felipe Santana*: Movimentação, colisão, estrutura básica;
-- *Matheus Sobreira*: Ending, auxílio no menu, auxílio na concepção do efeito tocha;
-- *Matheus Alexandre*: Lore e posicionamento, adição e barra de coletáveis;
-- *Paulo César*: Efeito de tocha;
-- *Thaphylla Ayanny*: Menu e Intro do jogo.
+- *Artur Machado* (aam5): Sprites, detalhamento final e ending;
+- *Felipe Santana* (fso2): Movimentação, colisão, estrutura básica;
+- *Matheus Sobreira* (mss13): Ending, auxílio no menu, auxílio na concepção do efeito tocha;
+- *Matheus Alexandre* (mas12): Lore e posicionamento, adição e barra de coletáveis;
+- *Paulo César* (pcnp): Efeito de tocha;
+- *Thaphylla Ayanny* (tatp): Menu e Intro do jogo.
 
 ### Tecnologias utilizadas:
 - *Linguagem de Programação*: Python;
